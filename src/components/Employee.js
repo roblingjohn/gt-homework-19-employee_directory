@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import API from "../utils/API";
+// import employeeArray from "../utils/GenerateEmployees"
 
 class Employee extends Component {
   componentDidMount() {
@@ -15,19 +16,20 @@ class Employee extends Component {
 
   generateEmployee() {
     API.getRandomEmployee().then((res) => {
-      //   employeeName = `${res.data.results[0].name.first} ${res.data.results[0].name.last}`
-      //   return employeeName
       this.setState(res.data.results[0]);
     });
   }
 
   render() {
     return (
-      <div>
-        <h2>
-          {this.state.name.first} {this.state.name.last}
-        </h2>
-      </div>
+      <tr>
+        <td>{this.state.name.first}</td>
+        <td>{this.state.name.last}</td>
+        <td>{this.state.email}</td>
+        <td>{this.state.cell}</td>
+        {/* <td>{this.state.dob.age}</td> */}
+        {/* <td>{this.state.location.city}</td> */}
+      </tr>
     );
   }
 }
