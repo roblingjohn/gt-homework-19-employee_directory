@@ -182,14 +182,15 @@ class Table extends Component {
               <button type="button" className="btn btn-dark">
                 Search
               </button>
-            </form>
-            <button
+              <button
               onClick={this.handleReset}
               type="button"
               className="btn btn-dark"
             >
               Reset
             </button>
+            </form>
+            
           </div>
         </div>
 
