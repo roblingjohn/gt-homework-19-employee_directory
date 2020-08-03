@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import Employee from "./Employee";
 import API from "../utils/API";
 import "./TableStyle.css";
-import EmployeeArray from "../utils/GenerateEmployees";
-import SearchBar from "./SearchBar";
 
 let baseArray = [];
 
@@ -150,8 +148,8 @@ class Table extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     let searchParam = event.target.search.value.toLowerCase();
-    if (searchParam.length === 0) {
-      this.setState({ employees: baseArray });
+    if (searchParam === "") {
+      this.handleReset();
     }
     let searchedArray = baseArray.filter(function (e) {
       return (
@@ -163,21 +161,39 @@ class Table extends Component {
     event.target.search.value = "";
   };
 
-  handleClick = (event) => {
+  handleReset = (event) => {
     event.preventDefault();
     this.setState({ employees: baseArray });
   };
 
   render() {
     return (
-      <div>
-        <div>
-          <form id="searchBar" onSubmit={this.handleSubmit}>
-            <input type="text" name="search" placeholder="Search by name" />
-            <button>Search</button>
-          </form>
-          <button onClick={this.handleClick}>Reset</button>
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            
+            <form id="searchBar" onSubmit={this.handleSubmit}>
+              <input
+                className="form"
+                type="text"
+                name="search"
+                placeholder="Search by name"
+              />
+              <button type="button" className="btn btn-dark">
+                Search
+              </button>
+              <button
+              onClick={this.handleReset}
+              type="button"
+              className="btn btn-dark"
+            >
+              Reset
+            </button>
+            </form>
+            
+          </div>
         </div>
+
         <table>
           <thead>
             <tr>
@@ -195,7 +211,7 @@ class Table extends Component {
                   this.sortEmployeesFirst();
                 }}
               >
-                First Name
+                First
               </th>
               <th
                 className="canClick"
@@ -203,7 +219,7 @@ class Table extends Component {
                   this.sortEmployeesLast();
                 }}
               >
-                Last Name
+                Last
               </th>
               <th>Email</th>
               <th>Cell number</th>
