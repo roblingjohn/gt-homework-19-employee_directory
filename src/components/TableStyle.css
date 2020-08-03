@@ -4,7 +4,16 @@ td {
   border: 1px solid black;
 }
 
+th {
+  color: darkslategrey
+}
+
+.canClick {
+  color: black
+}
+
 table {
   border-collapse: collapse;
-  text-align: left
+  text-align: left;
+  margin: auto;
 }

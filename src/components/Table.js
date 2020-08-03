@@ -64,6 +64,7 @@ class Table extends Component {
           <thead>
             <tr>
               <th
+                className="canClick"
                 onClick={() => {
                   this.sortEmployeesFirst();
                 }}
@@ -71,6 +72,7 @@ class Table extends Component {
                 First Name
               </th>
               <th
+                className="canClick"
                 onClick={() => {
                   this.sortEmployeesLast();
                 }}
@@ -80,6 +82,7 @@ class Table extends Component {
               <th>Email</th>
               <th>Cell number</th>
               <th
+                className="canClick"
                 onClick={() => {
                   this.sortEmployeesAge();
                 }}
@@ -89,6 +92,7 @@ class Table extends Component {
               <th>Street address</th>
               <th>City</th>
               <th
+                className="canClick"
                 onClick={() => {
                   this.sortEmployeesState();
                 }}
@@ -96,6 +100,7 @@ class Table extends Component {
                 State
               </th>
               <th
+                className="canClick"
                 onClick={() => {
                   this.sortEmployeesZip();
                 }}
