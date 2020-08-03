@@ -2,36 +2,38 @@ import React, { Component } from "react";
 import API from "../utils/API";
 // import employeeArray from "../utils/GenerateEmployees"
 
-class Employee extends Component {
-  componentDidMount() {
-    this.generateEmployee();
-  }
+// console.log(employeeArray)
 
-  state = {
-    name: {
-      first: "",
-      last: "",
-    },
-  };
+// class Employee extends Component {
+//   componentDidMount() {
+//     this.generateEmployee();
+//   }
 
-  generateEmployee() {
-    API.getRandomEmployee().then((res) => {
-      this.setState(res.data.results[0]);
-    });
-  }
+//   state = {
+//     name: {
+//       first: "",
+//       last: "",
+//     },
+//   };
 
-  render() {
+//   generateEmployee() {
+//     API.getRandomEmployee().then((res) => {
+//       this.setState(res.data.results[0]);
+//     });
+//   }
+
+//   render() {
+  const Employee = (props) => {
     return (
       <tr>
-        <td>{this.state.name.first}</td>
-        <td>{this.state.name.last}</td>
-        <td>{this.state.email}</td>
-        <td>{this.state.cell}</td>
-        {/* <td>{this.state.dob.age}</td> */}
-        {/* <td>{this.state.location.city}</td> */}
+        <td>{props.first}</td>
+        <td>{props.last}</td>
+        <td>{props.email}</td>
+        <td>{props.cell}</td>
+        <td>{props.age}</td>
+        <td>{props.city}</td>
       </tr>
     );
   }
-}
 
 export default Employee;
