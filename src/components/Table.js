@@ -3,6 +3,7 @@ import Employee from "./Employee";
 import API from "../utils/API";
 import "./TableStyle.css";
 import EmployeeArray from "../utils/GenerateEmployees";
+import SearchBar from "./SearchBar";
 
 let baseArray = [];
 
@@ -57,9 +58,34 @@ class Table extends Component {
     this.setState({ employees: newArray });
   }
 
+  handleSubmit = (event) => {
+    event.preventDefault();
+    let searchParam = event.target.search.value.toLowerCase();
+    if (searchParam.length === 0) {
+      this.setState({ employees: baseArray });
+    }
+    let searchedArray = baseArray.filter(function (e) {
+      return e.name.first.toLowerCase() === searchParam || e.name.last.toLowerCase() === searchParam;
+    });
+    this.setState({ employees: searchedArray });
+    event.target.search.value = ""
+  };
+
+  handleClick = (event) => {
+    event.preventDefault();
+    this.setState({employees: baseArray})
+  }
+
   render() {
     return (
       <div>
+        <div>
+          <form id="searchBar" onSubmit={this.handleSubmit}>
+            <input type="text" name="search" placeholder="Search by name" />
+            <button>Search</button>
+          </form>
+          <button onClick={this.handleClick}>Reset</button>
+        </div>
         <table>
           <thead>
             <tr>
