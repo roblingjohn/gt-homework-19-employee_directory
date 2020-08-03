@@ -14,48 +14,137 @@ class Table extends Component {
 
   state = {
     employees: [],
+    sortAsc: true,
   };
 
   generateEmployees() {
     API.getRandomEmployee().then((res) => {
       baseArray = res.data.results;
+      baseArray.forEach((item, i) => {
+        item.id = i + 1;
+      });
       this.setState({ employees: baseArray });
     });
   }
 
+  sortEmployeesId() {
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.id >= b.id ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.id <= b.id ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
+  }
+
   sortEmployeesFirst() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.name.first >= b.name.first ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.name.first >= b.name.first ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.name.first <= b.name.first ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   sortEmployeesLast() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.name.last >= b.name.last ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.name.last >= b.name.last ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.name.last <= b.name.last ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   sortEmployeesAge() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.dob.age >= b.dob.age ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.dob.age >= b.dob.age ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.dob.age <= b.dob.age ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   sortEmployeesState() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.location.state >= b.location.state ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.location.state >= b.location.state ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.location.state <= b.location.state ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   sortEmployeesZip() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.location.postcode >= b.location.postcode ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.location.postcode >= b.location.postcode ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.location.postcode <= b.location.postcode ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   handleSubmit = (event) => {
@@ -65,16 +154,19 @@ class Table extends Component {
       this.setState({ employees: baseArray });
     }
     let searchedArray = baseArray.filter(function (e) {
-      return e.name.first.toLowerCase() === searchParam || e.name.last.toLowerCase() === searchParam;
+      return (
+        e.name.first.toLowerCase().includes(searchParam) ||
+        e.name.last.toLowerCase().includes(searchParam)
+      );
     });
     this.setState({ employees: searchedArray });
-    event.target.search.value = ""
+    event.target.search.value = "";
   };
 
   handleClick = (event) => {
     event.preventDefault();
-    this.setState({employees: baseArray})
-  }
+    this.setState({ employees: baseArray });
+  };
 
   render() {
     return (
@@ -89,6 +181,14 @@ class Table extends Component {
         <table>
           <thead>
             <tr>
+              <th
+                className="canClick"
+                onClick={() => {
+                  this.sortEmployeesId();
+                }}
+              >
+                ID
+              </th>
               <th
                 className="canClick"
                 onClick={() => {
@@ -138,6 +238,7 @@ class Table extends Component {
           <tbody>
             {this.state.employees.map((employee) => (
               <Employee
+                id={employee.id}
                 first={employee.name.first}
                 last={employee.name.last}
                 email={employee.email}

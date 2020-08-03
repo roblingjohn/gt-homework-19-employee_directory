@@ -26,6 +26,7 @@ import API from "../utils/API";
   const Employee = (props) => {
     return (
       <tr>
+        <td>{props.id}</td>
         <td>{props.first}</td>
         <td>{props.last}</td>
         <td>{props.email}</td>
