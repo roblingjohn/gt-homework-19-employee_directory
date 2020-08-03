@@ -65,16 +65,19 @@ class Table extends Component {
       this.setState({ employees: baseArray });
     }
     let searchedArray = baseArray.filter(function (e) {
-      return e.name.first.toLowerCase() === searchParam || e.name.last.toLowerCase() === searchParam;
+      return (
+        e.name.first.toLowerCase().includes(searchParam) ||
+        e.name.last.toLowerCase().includes(searchParam)
+      );
     });
     this.setState({ employees: searchedArray });
-    event.target.search.value = ""
+    event.target.search.value = "";
   };
 
   handleClick = (event) => {
     event.preventDefault();
-    this.setState({employees: baseArray})
-  }
+    this.setState({ employees: baseArray });
+  };
 
   render() {
     return (
