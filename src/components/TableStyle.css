@@ -2,6 +2,8 @@ table,
 th,
 td {
   border: 1px solid darkgray;
+  padding-top: 3px;
+  padding-bottom: 3px;
 }
 
 th {
