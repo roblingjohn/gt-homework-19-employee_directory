@@ -19,8 +19,18 @@ class Table extends Component {
   generateEmployees() {
     API.getRandomEmployee().then((res) => {
       baseArray = res.data.results;
+      baseArray.forEach((item, i) => {
+        item.id = i + 1;
+      });
       this.setState({ employees: baseArray });
     });
+  }
+
+  sortEmployeesId() {
+    let newArray = this.state.employees.sort((a, b) =>
+      a.id >= b.id ? 1 : -1
+    );
+    this.setState({ employees: newArray });
   }
 
   sortEmployeesFirst() {
@@ -92,6 +102,14 @@ class Table extends Component {
         <table>
           <thead>
             <tr>
+            <th
+                className="canClick"
+                onClick={() => {
+                  this.sortEmployeesId();
+                }}
+              >
+                ID
+              </th>
               <th
                 className="canClick"
                 onClick={() => {
@@ -141,6 +159,7 @@ class Table extends Component {
           <tbody>
             {this.state.employees.map((employee) => (
               <Employee
+                id={employee.id}
                 first={employee.name.first}
                 last={employee.name.last}
                 email={employee.email}
