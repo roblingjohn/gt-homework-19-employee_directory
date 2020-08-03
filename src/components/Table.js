@@ -14,6 +14,7 @@ class Table extends Component {
 
   state = {
     employees: [],
+    sortAsc: true,
   };
 
   generateEmployees() {
@@ -27,45 +28,123 @@ class Table extends Component {
   }
 
   sortEmployeesId() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.id >= b.id ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.id >= b.id ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.id <= b.id ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   sortEmployeesFirst() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.name.first >= b.name.first ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.name.first >= b.name.first ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.name.first <= b.name.first ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   sortEmployeesLast() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.name.last >= b.name.last ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.name.last >= b.name.last ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.name.last <= b.name.last ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   sortEmployeesAge() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.dob.age >= b.dob.age ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.dob.age >= b.dob.age ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.dob.age <= b.dob.age ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   sortEmployeesState() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.location.state >= b.location.state ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.location.state >= b.location.state ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.location.state <= b.location.state ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   sortEmployeesZip() {
-    let newArray = this.state.employees.sort((a, b) =>
-      a.location.postcode >= b.location.postcode ? 1 : -1
-    );
-    this.setState({ employees: newArray });
+    if (this.state.sortAsc) {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.location.postcode >= b.location.postcode ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: false,
+      });
+    } else {
+      let newArray = this.state.employees.sort((a, b) =>
+        a.location.postcode <= b.location.postcode ? 1 : -1
+      );
+      this.setState({
+        employees: newArray,
+        sortAsc: true,
+      });
+    }
   }
 
   handleSubmit = (event) => {
@@ -102,7 +181,7 @@ class Table extends Component {
         <table>
           <thead>
             <tr>
-            <th
+              <th
                 className="canClick"
                 onClick={() => {
                   this.sortEmployeesId();
