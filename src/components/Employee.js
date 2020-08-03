@@ -31,7 +31,12 @@ import API from "../utils/API";
         <td>{props.email}</td>
         <td>{props.cell}</td>
         <td>{props.age}</td>
+        <td>{props.address}</td>
         <td>{props.city}</td>
+        <td>{props.state}</td>
+        <td>{props.zip}</td>
+
+
       </tr>
     );
   }

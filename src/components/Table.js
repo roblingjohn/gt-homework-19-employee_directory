@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Employee from "./Employee";
 import API from "../utils/API";
 import "./TableStyle.css";
+import EmployeeArray from "../utils/GenerateEmployees";
 
 class Table extends Component {
   // sortTable(n) {
@@ -65,16 +66,14 @@ class Table extends Component {
   }
 
   state = {
-    name: {
-      first: "",
-      last: "",
-    },
-  };
+    array: []
+    }
+
 
   generateEmployee() {
     API.getRandomEmployee().then((res) => {
-      this.setState(res.data.results[0]);
-    });
+      this.setState({array: res.data.results})
+    })
   }
 
   render() {
@@ -88,16 +87,29 @@ class Table extends Component {
             <th>Cell number</th> 
             <th>Age</th>
             <th>Street address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Zip</th>
+
           </tr>
         </thead>
         <tbody>
+          {this.state.array.map(employee => (
+
           
           <Employee 
-          first={this.state.name.first}
-          last={this.state.name.last}
-          email={this.state.email}
-          cell={this.state.cell}
+          first={employee.name.first}
+          last={employee.name.last}
+          email={employee.email}
+          cell={employee.cell}
+          age={employee.dob.age}
+          address={employee.location.street.number + " " + employee.location.street.name} 
+          city={employee.location.city}
+          state={employee.location.state}
+          zip={employee.location.postcode}
+
           />
+          ))}
 
         </tbody>
       </table>
