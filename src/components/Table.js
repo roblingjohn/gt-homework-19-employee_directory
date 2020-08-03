@@ -4,45 +4,104 @@ import API from "../utils/API";
 import "./TableStyle.css";
 import EmployeeArray from "../utils/GenerateEmployees";
 
-let baseArray = []
+let baseArray = [];
 
 class Table extends Component {
   componentDidMount() {
-    this.generateEmployee();
+    this.generateEmployees();
   }
 
   state = {
     employees: [],
   };
 
-  generateEmployee() {
+  generateEmployees() {
     API.getRandomEmployee().then((res) => {
-      baseArray = res.data.results
+      baseArray = res.data.results;
       this.setState({ employees: baseArray });
     });
   }
 
-  sortEmployees() {
-    let newArray = this.state.employees.sort((a, b) => (a.name.last >= b.name.last ? 1 : -1));
+  sortEmployeesFirst() {
+    let newArray = this.state.employees.sort((a, b) =>
+      a.name.first >= b.name.first ? 1 : -1
+    );
+    this.setState({ employees: newArray });
+  }
+
+  sortEmployeesLast() {
+    let newArray = this.state.employees.sort((a, b) =>
+      a.name.last >= b.name.last ? 1 : -1
+    );
+    this.setState({ employees: newArray });
+  }
+
+  sortEmployeesAge() {
+    let newArray = this.state.employees.sort((a, b) =>
+      a.dob.age >= b.dob.age ? 1 : -1
+    );
+    this.setState({ employees: newArray });
+  }
+
+  sortEmployeesState() {
+    let newArray = this.state.employees.sort((a, b) =>
+      a.location.state >= b.location.state ? 1 : -1
+    );
+    this.setState({ employees: newArray });
+  }
+
+  sortEmployeesZip() {
+    let newArray = this.state.employees.sort((a, b) =>
+      a.location.postcode >= b.location.postcode ? 1 : -1
+    );
     this.setState({ employees: newArray });
   }
 
   render() {
     return (
       <div>
-        <button>Sort</button>
         <table>
           <thead>
             <tr>
-              <th>First Name</th>
-              <th onClick={() => {this.sortEmployees()}}>Last Name</th>
+              <th
+                onClick={() => {
+                  this.sortEmployeesFirst();
+                }}
+              >
+                First Name
+              </th>
+              <th
+                onClick={() => {
+                  this.sortEmployeesLast();
+                }}
+              >
+                Last Name
+              </th>
               <th>Email</th>
               <th>Cell number</th>
-              <th>Age</th>
+              <th
+                onClick={() => {
+                  this.sortEmployeesAge();
+                }}
+              >
+                Age
+              </th>
               <th>Street address</th>
               <th>City</th>
-              <th>State</th>
-              <th>Zip</th>
+              <th
+                onClick={() => {
+                  this.sortEmployeesState();
+                }}
+              >
+                State
+              </th>
+              <th
+                onClick={() => {
+                  this.sortEmployeesZip();
+                }}
+              >
+                Zip
+              </th>
             </tr>
           </thead>
           <tbody>
