@@ -2,8 +2,6 @@ import React, { Component } from "react";
 import Employee from "./Employee";
 import API from "../utils/API";
 import "./TableStyle.css";
-import EmployeeArray from "../utils/GenerateEmployees";
-import SearchBar from "./SearchBar";
 
 let baseArray = [];
 

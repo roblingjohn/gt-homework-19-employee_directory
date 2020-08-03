@@ -1,28 +1,5 @@
-import React, { Component } from "react";
-import API from "../utils/API";
-// import employeeArray from "../utils/GenerateEmployees"
+import React from "react";
 
-// console.log(employeeArray)
-
-// class Employee extends Component {
-//   componentDidMount() {
-//     this.generateEmployee();
-//   }
-
-//   state = {
-//     name: {
-//       first: "",
-//       last: "",
-//     },
-//   };
-
-//   generateEmployee() {
-//     API.getRandomEmployee().then((res) => {
-//       this.setState(res.data.results[0]);
-//     });
-//   }
-
-//   render() {
   const Employee = (props) => {
     return (
       <tr>
