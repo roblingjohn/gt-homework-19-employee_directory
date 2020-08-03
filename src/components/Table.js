@@ -148,8 +148,8 @@ class Table extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     let searchParam = event.target.search.value.toLowerCase();
-    if (searchParam.length === 0) {
-      this.setState({ employees: baseArray });
+    if (searchParam === "") {
+      this.handleReset();
     }
     let searchedArray = baseArray.filter(function (e) {
       return (
@@ -161,7 +161,7 @@ class Table extends Component {
     event.target.search.value = "";
   };
 
-  handleClick = (event) => {
+  handleReset = (event) => {
     event.preventDefault();
     this.setState({ employees: baseArray });
   };
@@ -170,16 +170,8 @@ class Table extends Component {
     return (
       <div className="container">
         <div className="row">
-          <div className="col col-md-1">
-            <button
-              onClick={this.handleClick}
-              type="button"
-              className="btn btn-dark"
-            >
-              Reset
-            </button>
-          </div>
-          <div className="col col-md-4">
+          <div className="col">
+            
             <form id="searchBar" onSubmit={this.handleSubmit}>
               <input
                 className="form"
@@ -187,10 +179,17 @@ class Table extends Component {
                 name="search"
                 placeholder="Search by name"
               />
-              <button type="button" class="btn btn-dark">
+              <button type="button" className="btn btn-dark">
                 Search
               </button>
             </form>
+            <button
+              onClick={this.handleReset}
+              type="button"
+              className="btn btn-dark"
+            >
+              Reset
+            </button>
           </div>
         </div>
 
