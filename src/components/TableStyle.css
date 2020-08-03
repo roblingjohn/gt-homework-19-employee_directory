@@ -2,9 +2,19 @@ table,
 th,
 td {
   border: 1px solid black;
+  padding: 3px
+}
+
+th {
+  color: darkslategrey
+}
+
+.canClick {
+  color: black
 }
 
 table {
   border-collapse: collapse;
-  text-align: left
+  text-align: left;
+  margin: auto;
 }

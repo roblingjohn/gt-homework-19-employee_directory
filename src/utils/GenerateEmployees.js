@@ -16,7 +16,7 @@ let EmployeeArray = [];
 
 API.getRandomEmployee().then((res) => {
   EmployeeArray = {res}
-  console.log(res.data.results)
+  // console.log(res.data.results)
   return EmployeeArray
 
 });
