@@ -1,20 +1,25 @@
 table,
 th,
 td {
-  border: 1px solid black;
-  padding: 3px
+  border: 1px solid darkgray;
 }
 
 th {
-  color: darkslategrey
+  color: darkslategrey;
+  background-color: #badaf3;
+}
+
+td {
+  background-color: #eef6fc;
 }
 
 .canClick {
-  color: black
+  color: black;
 }
 
 table {
   border-collapse: collapse;
   text-align: left;
   margin: auto;
+  margin-bottom: 20px;
 }

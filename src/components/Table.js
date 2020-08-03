@@ -168,14 +168,32 @@ class Table extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <form id="searchBar" onSubmit={this.handleSubmit}>
-            <input type="text" name="search" placeholder="Search by name" />
-            <button>Search</button>
-          </form>
-          <button onClick={this.handleClick}>Reset</button>
+      <div className="container">
+        <div className="row">
+          <div className="col col-md-1">
+            <button
+              onClick={this.handleClick}
+              type="button"
+              className="btn btn-dark"
+            >
+              Reset
+            </button>
+          </div>
+          <div className="col col-md-4">
+            <form id="searchBar" onSubmit={this.handleSubmit}>
+              <input
+                className="form"
+                type="text"
+                name="search"
+                placeholder="Search by name"
+              />
+              <button type="button" class="btn btn-dark">
+                Search
+              </button>
+            </form>
+          </div>
         </div>
+
         <table>
           <thead>
             <tr>
@@ -193,7 +211,7 @@ class Table extends Component {
                   this.sortEmployeesFirst();
                 }}
               >
-                First Name
+                First
               </th>
               <th
                 className="canClick"
@@ -201,7 +219,7 @@ class Table extends Component {
                   this.sortEmployeesLast();
                 }}
               >
-                Last Name
+                Last
               </th>
               <th>Email</th>
               <th>Cell number</th>
